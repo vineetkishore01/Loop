@@ -1,6 +1,6 @@
 # ⚡ Project LOOP — Master Design & Architecture Specification
 
-> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in a precision minimalist design with **Modern Apple Blue (`#007aff`) for primary accents and Bright Apple Green (`#30d158`) for live voice/mic activity**. No photos, no videos, no algorithmic manipulation, no floaty fluff—just sharp text, sub-20ms chat delivery, and crystal-clear <40ms voice channels with automatic reconnection.
+> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in an **ultra-clean, solid opaque modern dark design** (layered matte monochrome surfaces + Apple Blue and Bright Green accents). **100% flat and solid—zero glassmorphism, zero transparency, zero frosted blur.** Just sharp text, sub-20ms chat delivery, and crystal-clear <40ms voice channels with automatic reconnection.
 
 ---
 
@@ -19,7 +19,7 @@ flowchart TD
         Voice["🎙️ 1-Tap Discord Voice Channels\nDrop in/out freely, LiveKit SFU + Opus 48kHz (Sub-40ms latency, persistent bottom dock)"]
         Speed["⚡ Sub-20ms WebSocket Chat\nInstant optimistic updates for feed, likes, and messages"]
         Palette["⚡ Global Command Palette (Cmd+K)\nJump to any user, chat, bookmark, or action in 1 keystroke"]
-        Design["🎨 Monochrome Precision + Apple Blue (#007aff) & Bright Green (#30d158)\nSolid layered dark surfaces with 1px crisp hairline borders"]
+        Design["🎨 Solid Matte Monochrome + Apple Blue (#007aff) & Bright Green (#30d158)\n100% Opaque layered surfaces with 1px precision hairline borders"]
     end
 
     Giants --> ProductCore
@@ -60,7 +60,7 @@ flowchart TD
    - Connection State Indicator: Live ping meter in milliseconds (`🟢 18ms`, `🟡 110ms`, `🔴 Reconnecting...`).
    - Silent JWT Token Refresh: Background token rotation so multi-hour voice sessions never disconnect.
 3. **Persistent Floating Voice Dock (Global)**:
-   - When connected, a sleek dock floats at the bottom of the screen across all routes:
+   - When connected, a solid matte dock floats at the bottom of the screen across all routes:
      `🟢 In Voice: #general (18ms ping) · 🎙️ Mute (M) · 🎧 Deafen (D) · 🔴 Disconnect (Esc)`
    - Browse the feed, write posts, or chat in DMs while talking in real-time with zero audio interruption.
 4. **Voice Activity Detection (VAD) & Active Speaker Detection**:
@@ -113,7 +113,7 @@ flowchart TD
 3. **Public Broadcast Circles / Channels (Telegram Style)**:
    - Users can create a dedicated text broadcast channel where only they can post, and subscribers receive updates in real-time.
 4. **Tethered Hover Cards (Linear Style)**:
-   - Hovering over any `@handle` for >180ms opens a floating card with bio, stats, and a 1-tap `Follow` button without navigating away.
+   - Hovering over any `@handle` for >180ms opens a solid matte card with bio, stats, and a 1-tap `Follow` button without navigating away.
 
 ---
 
@@ -128,26 +128,26 @@ flowchart TD
 
 ---
 
-## 3. Minimalist Design System: Solid Monochrome + Apple Blue & Bright Green
+## 3. Solid Opaque Modern Dark Design System
 
-### 3.1 Palette & Semantic Tokens (`globals.css`)
-No blurry glassmorphism. Surfaces are **solid, dark, and layered** with precision 1px borders and targeted high-visibility accents:
+### 3.1 Solid Matte Palette & Semantic Tokens (`globals.css`)
+**100% Solid & Opaque.** Surfaces are layered matte charcoals with 1px precision hairline borders. No transparency, no backdrop-filter blur:
 
 ```css
 :root {
-  /* Solid Surface Layering (Pitch Black -> Deep Charcoal) */
-  --bg-canvas: #060608;             /* Viewport base background */
-  --bg-surface-0: #0b0b0e;          /* Floating nav rail & sidebar */
-  --bg-surface-1: #111115;          /* Post cards & chat bubbles */
-  --bg-surface-2: #18181d;          /* Composer, popovers & elevated inputs */
-  --bg-surface-hover: #22222a;      /* Hover state on interactive rows */
-  --bg-surface-active: #2b2b35;     /* Pressed button state */
+  /* 100% Solid Opaque Surface Ladder (Pitch Black -> Layered Matte Charcoal) */
+  --bg-canvas: #060608;             /* Solid viewport background */
+  --bg-surface-0: #0b0b0e;          /* Solid nav rail & sidebar */
+  --bg-surface-1: #111115;          /* Solid post cards & chat bubbles */
+  --bg-surface-2: #18181d;          /* Solid composer & elevated panels */
+  --bg-surface-hover: #22222a;      /* Solid hover state on interactive rows */
+  --bg-surface-active: #2b2b35;     /* Solid pressed button state */
 
-  /* Precision Hairline Borders */
+  /* Precision Hairline Borders (Crisp 1px solid lines) */
   --border-subtle: rgba(255, 255, 255, 0.07);
   --border-medium: rgba(255, 255, 255, 0.14);
   --border-strong: rgba(255, 255, 255, 0.28);
-  --border-focus: #007aff;          /* Apple Blue focus ring */
+  --border-focus: #007aff;          /* Solid Apple Blue focus ring */
 
   /* High-Scannability Typography */
   --text-high: #f4f4f6;             /* Primary text: crisp off-white */
@@ -156,20 +156,20 @@ No blurry glassmorphism. Surfaces are **solid, dark, and layered** with precisio
   --text-muted: #474750;            /* Disabled states, subtle placeholders */
 
   /* Modern Apple Blue Accent Suite (Primary Actions, CTAs, Badges) */
-  --apple-blue: #007aff;            /* Primary action blue */
-  --apple-blue-hover: #0066d6;      /* Hover state for primary buttons */
-  --apple-blue-subtle: rgba(0, 122, 255, 0.12); /* Badge & selection background */
+  --apple-blue: #007aff;            /* Solid primary action blue */
+  --apple-blue-hover: #0066d6;      /* Solid hover state for primary buttons */
+  --apple-blue-subtle: rgba(0, 122, 255, 0.14); /* Badge & selection background */
   --apple-blue-glow: 0 0 16px rgba(0, 122, 255, 0.25);
 
   /* Modern Bright Green Accent Suite (Live Voice, Active Mic, Online Presence) */
-  --bright-green: #30d158;          /* Apple Bright Green for mic/voice */
+  --bright-green: #30d158;          /* Solid Apple Bright Green for mic/voice */
   --bright-green-glow: 0 0 16px rgba(48, 209, 88, 0.35); /* Active speaker avatar ring */
-  --bright-green-subtle: rgba(48, 209, 88, 0.12); /* In-voice status chip */
+  --bright-green-subtle: rgba(48, 209, 88, 0.14); /* In-voice status chip */
 
   /* Auxiliary Semantic Accents */
-  --status-danger: #ff453a;         /* Apple Red for Disconnect & Muted mic */
-  --status-warning: #ff9f0a;        /* Apple Amber for Deafened state */
-  --reaction-heart: #ff375f;        /* Apple Pink for active Like hearts */
+  --status-danger: #ff453a;         /* Solid Apple Red for Disconnect & Muted mic */
+  --status-warning: #ff9f0a;        /* Solid Apple Amber for Deafened state */
+  --reaction-heart: #ff375f;        /* Solid Apple Pink for active Like hearts */
 
   /* Typography & Layout Metrics */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -477,8 +477,8 @@ sequenceDiagram
    - REST endpoints for Feed/Posts/Likes/Reposts/Bookmarks/Search.
    - Native WebSocket connection hub with Redis Pub/Sub.
    - Voice channel endpoints (`GET /voice/channels`, `POST /voice/channels/{id}/join`, `POST /voice/channels/{id}/leave`) with LiveKit token minting.
-3. **Build Next.js 15 Monochrome + Apple Blue & Bright Green UI**:
-   - `globals.css` with solid surface ladder, hairline tokens, Modern Apple Blue (`#007aff`), and Bright Apple Green (`#30d158`).
+3. **Build Next.js 15 Solid Monochrome + Apple Blue & Bright Green UI**:
+   - `globals.css` with solid opaque surface ladder, 1px hairline tokens, Modern Apple Blue (`#007aff`), and Bright Apple Green (`#30d158`).
    - Spatial App Shell: Left floating icon rail, center focus stream, contextual right dock.
    - Micro-Composer with character counter ring and Apple Blue `Post` button (`Cmd+Enter`).
    - Post cards with vertical sliding numeric tickers, threaded replies, and emoji reactions.
@@ -486,7 +486,7 @@ sequenceDiagram
    - User profile pages with tabbed timelines (`Thoughts`, `Replies`, `Likes`, `Bookmarks`).
    - Quick Command Palette (`Cmd+K`) and keyboard navigation (`j`/`k`, `n`, `c`, `m`, `d`, `Esc`, `/`).
 4. **Implement Discord Voice Channels**:
-   - `VoiceDock.tsx` persistent floating bottom dock with live ping, mute, deafen, and disconnect controls.
+   - `VoiceDock.tsx` persistent solid matte dock with live ping, mute, deafen, and disconnect controls.
    - Voice channel list showing active participants and live **Bright Green speaking indicator rings**.
    - Fast auto-reconnect and ICE restart on network jitter / Wi-Fi drops.
    - WebRTC audio hook using `@livekit/components-react` with Opus codec @ 48kHz.
