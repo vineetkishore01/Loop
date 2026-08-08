@@ -1,24 +1,25 @@
 # ⚡ Project LOOP — Master Design & Architecture Specification
 
-> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in a jaw-dropping **Technical Authenticity & Quiet Luxury aesthetic** (5-tier obsidian surface ladder + Modern Apple Blue `#007aff` and Bright Apple Green `#30d158` accents). **100% solid, flat, and opaque—zero glassmorphism, zero transparency, zero frosted blur.** Just sharp text, sub-20ms chat delivery, full Discord-style audio hardware device settings, and crystal-clear <40ms voice channels with automatic reconnection.
+> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, WhatsApp, X (Twitter), and Telegram** in a jaw-dropping **Technical Authenticity & Quiet Luxury aesthetic** (5-tier obsidian surface ladder + Modern Apple Blue `#007aff` and Bright Apple Green `#30d158` accents). Built entirely around a **clean, spam-free Mutual Friend System** (`[ + Add Friend ]` / `[ Accept ]`), eliminating one-way follow confusion. **100% solid, flat, and opaque—zero glassmorphism, zero transparency, zero frosted blur.** Just sharp text, sub-20ms chat delivery, full Discord audio hardware device controls, and crystal-clear <40ms voice channels with automatic reconnection.
 
 ---
 
-## 1. The Best of Discord, X, WhatsApp & Telegram (Feature Matrix)
+## 1. The Best of Discord, WhatsApp, X & Telegram (Feature Matrix)
 
 ```mermaid
 flowchart TD
     subgraph Giants ["The 4 Best-of-Breed Foundations"]
-        X["𝕏 / Twitter\n• Chronological Following & Discover feeds\n• 1-Click Reposts & Quote thoughts\n• Threaded replies with connector hairlines\n• Bookmarks, Pin to profile & Edit post window"]
-        Discord["Discord\n• 1-Tap Persistent Voice Channels (Sub-40ms LiveKit SFU)\n• Input/Output Device Selector (Mic & Headphone) + Mic Test VU Bar\n• Auto-Reconnect with ICE Restart & Connection Quality Meter\n• Voice Activity Detection (VAD) & Active Speaker Bright Green Glow Rings\n• Sub-20ms WebSocket DMs & Group chats"]
-        Telegram["Telegram\n• Broadcast Channels / Public Circles\n• Search history inside any DM conversation\n• 'Saved Messages' personal private scratchpad\n• Keyboard-first shortcuts & instant navigation"]
-        WhatsApp["WhatsApp\n• Read receipts & delivery ticks (✓, ✓✓, ✓✓ blue)\n• In-reply-to quote preview bubbles in chat\n• DM privacy (Allow all vs. Mutuals only)\n• Pin conversations & mute/archive chats"]
+        Discord["Discord\n• Pure Mutual Friend System (Add Friend / Accept / Decline)\n• 1-Tap Persistent Voice Channels (Sub-40ms LiveKit SFU)\n• Input/Output Device Selector (Mic & Headphone) + Mic Test VU Bar\n• Auto-Reconnect with ICE Restart & Connection Quality Meter\n• Voice Activity Detection (VAD) & Active Speaker Bright Green Glow Rings"]
+        WhatsApp["WhatsApp\n• Sub-20ms Direct Messages & Group chats with zero spam\n• Read receipts & delivery ticks (✓, ✓✓, ✓✓ blue)\n• In-reply-to quote preview bubbles in chat\n• Pin top conversations & mute/archive chats\n• Clean split-pane desktop messaging"]
+        X["𝕏 / Twitter\n• Chronological Friends Feed & Global Discover pulse\n• Micro-post composer (≤300 chars) with progress ring\n• Threaded replies with connector hairlines\n• Bookmarks, Pin to profile & Edit post window"]
+        Telegram["Telegram\n• Broadcast Channels / Public Circles for creators\n• Search history inside any DM conversation\n• 'Saved Messages' personal private scratchpad\n• Keyboard-first shortcuts & instant navigation"]
     end
 
     subgraph ProductCore ["LOOP's Unified Engine"]
+        Friends["🤝 Spam-Free Mutual Friend System\nZero follow confusion. Only mutual friends can DM & share feeds."]
         Voice["🎙️ 1-Tap Discord Voice Channels\nDrop in/out freely, LiveKit SFU + Opus 48kHz (Sub-40ms latency, persistent bottom dock)"]
         Speed["⚡ Sub-20ms WebSocket Chat\nInstant optimistic updates for feed, likes, and messages"]
-        Palette["⚡ Global Command Palette (Cmd+K)\nJump to any user, chat, bookmark, or action in 1 keystroke"]
+        Palette["⚡ Global Command Palette (Cmd+K)\nJump to any friend, chat, voice lounge, or action in 1 keystroke"]
         Design["🎨 5-Tier Obsidian Surface Ladder + Apple Blue (#007aff) & Bright Green (#30d158)\n100% Solid matte surfaces with 1px precision optical hairlines"]
     end
 
@@ -29,17 +30,34 @@ flowchart TD
 
 ## 2. Complete Essential Feature Catalog
 
-### A. The Feed & Stream (Best of X + Telegram Channels)
+### A. The Spam-Free Mutual Friend System (Discord + WhatsApp Model)
+*No one-way asymmetric follows. No confusion over who can message whom. Everything is clean, reciprocal, and high-signal.*
+
+1. **Friend Requests (`[ + Add Friend ]` / `[ Accept ]` / `[ Decline ]`)**:
+   - Send a friend request by clicking **`[ + Add Friend ]`** on any profile, hover card, or by searching their `@handle`.
+   - Receiver gets an instant real-time notification with 1-tap `[ Accept ]` or `[ Decline ]`.
+   - Once accepted, both users become **Mutual Friends** (`🤝 Friends`).
+2. **Clean, Uncluttered DMs**:
+   - Only accepted mutual friends appear in your DM conversation list.
+   - Zero unsolicited spam inboxes, zero stranger message requests.
+3. **Friend Status Indicators**:
+   - Live presence indicator on friend avatars: **Bright Green (`#30d158`)** when online + custom text status (e.g. `💬 "building loop"`, `⚡ "deep work"`).
+4. **Pending Requests Manager**:
+   - Dedicated tab in Notifications / Friends list to review incoming and outgoing friend requests.
+
+---
+
+### B. The Feed & Stream (Friends Stream + Discover Pulse)
 1. **Dual Feed Engine**:
-   - `Following`: 100% pure chronological stream of thoughts from people you follow (zero ads, zero algorithmic insertion).
-   - `Discover`: Real-time global pulse of latest thoughts across the community.
+   - `Friends`: 100% pure chronological stream of thoughts from your **accepted mutual friends** (zero ads, zero algorithms, high intimacy).
+   - `Discover`: Real-time global pulse of high-signal thoughts across the community to discover new people and send friend requests.
 2. **Micro-Post Composer (≤300 chars)**:
    - Live Apple Blue circular SVG progress ring as you type (shifts to Amber at 280 chars, Red at 300).
    - Hotkey publish: `Cmd + Enter` / `Ctrl + Enter`.
    - Rich text formatting: Bold (`**`), Italic (`*`), Inline Code (`` `code` ``), and Blockquotes (`>`).
 3. **Post Interactions**:
    - **Like / Heart**: Tactile numeric odometer ticker (`tabular-nums`) with 120ms spring scale bounce (`scale(1.2) -> scale(1.0)`) and Pink/Red (`#ff375f`) glow.
-   - **Repost / Echo**: 1-Tap repost directly to your followers.
+   - **Repost / Echo**: 1-Tap repost directly to your friends.
    - **Quote Thought**: Repost with your own commentary attached above the original card.
    - **Threaded Nested Replies**: Clean vertical connector hairlines with indented responses.
    - **Bookmark / Save**: 1-Click save to your private `Bookmarks` tab.
@@ -49,11 +67,11 @@ flowchart TD
 
 ---
 
-### B. Discord-Style Voice Channels & Audio Hardware Settings (LiveKit SFU + Opus)
+### C. Discord-Style Voice Channels & Audio Hardware Settings (LiveKit SFU + Opus)
 
 #### 1. 1-Tap Voice Channel Drop-in & Lounges
 - Click any voice channel (e.g. `🔊 #general-lounge`, `🔊 #builders`, `🔊 #chill`) to immediately connect to the audio room.
-- Channel participant list shows who is currently inside with **Bright Green (`#30d158`) active speaking rings**.
+- Channel participant list shows which friends are currently inside with **Bright Green (`#30d158`) active speaking rings**.
 - Leave whenever you want with `Esc` or the Disconnect button.
 
 #### 2. Discord-Style Audio Device Configuration (`Settings -> Voice & Audio`)
@@ -87,56 +105,57 @@ flowchart TD
 
 ---
 
-### C. Discord-Fast Direct Messages & Chat (Best of Discord + WhatsApp + Telegram)
-1. **Sub-20ms Real-Time WebSocket Engine**:
-   - Built on native FastAPI WebSockets + Redis Pub/Sub for instantaneous message dispatch.
-   - Messages appear with a smooth `4px translateY` slide and zero UI freeze.
-2. **Delivery & Read Receipts (WhatsApp Style)**:
+### D. WhatsApp / Signal Desktop Chat Architecture
+1. **Split-Pane Ergonomics (340px Left Rail + Fluid Chat Viewport)**:
+   - Left list shows friends with live green presence dots, last message preview, unread count badges, and pinned chats.
+2. **WhatsApp-Style Read Receipts**:
    - `✓` Sent to server.
-   - `✓✓` Delivered to recipient's active socket.
-   - `✓✓` (Modern Apple Blue) Read by recipient.
+   - `✓✓` Delivered to friend's active socket.
+   - `✓✓` (Modern Apple Blue) Read by friend.
 3. **Live Typing Indicators & Presence (Discord Style)**:
    - Rhythmic 3-dot breathing animation: *"Sarah is typing..."*.
-   - Live **Bright Green status dot (`#30d158`)** (`online` / `offline`) + custom status snippet (e.g. `💬 "building loop"`, `⚡ "deep work"`).
-4. **In-Chat Quoted Replies**:
-   - Click or swipe reply on any message to pin a quote bubble above your input.
+   - Live **Bright Green status dot (`#30d158`)** (`online` / `offline`) + custom status snippet.
+4. **In-Chat Quoted Replies & Code Fences**:
+   - Click or swipe reply on any message to anchor a quote bubble with a 3px Apple Blue vertical bar.
+   - Multi-line syntax-highlighted code blocks.
 5. **Emoji & Micro-Reactions**:
    - Add instant reactions (`🔥`, `⚡`, `❤️`, `👀`, `🧠`, `🚀`) below any chat message.
 6. **In-Chat Message Search**:
-   - Search through the message history of any specific 1-on-1 or group conversation with live keyword highlighting.
-7. **Pinned Chats, Mute & Archive**:
-   - Pin your top 5 friends to the top of your conversation list.
-   - Mute notifications or archive inactive conversations.
-8. **"Saved Messages" (Telegram Style)**:
+   - Search through the message history of any friend conversation with live keyword highlighting.
+7. **"Saved Messages" (Telegram Style)**:
    - Dedicated private scratchpad conversation with yourself to jot down notes, draft thoughts, and store links.
 
 ---
 
-### D. Profiles, Circles & Follows (Best of X + Telegram Broadcasts)
+### E. Profiles, Circles & Public Channels
 1. **User Identity (`/@handle`)**:
    - Display name, `@handle`, bio (≤280 chars), custom status, joined date.
-   - Stats Bar: `Following`, `Followers`, `Thoughts`.
-   - 1-Tap Solid **Modern Apple Blue `Follow` / `Following` toggle**.
+   - Stats Bar: `Friends: 48`, `Thoughts: 124`.
+   - **Dynamic Relationship Action Buttons**:
+     - If not connected: Solid Apple Blue **`[ + Add Friend ]`**
+     - If request sent: Solid Charcoal **`[ Request Sent ⏳ ]`** (click to cancel)
+     - If request received: **`[ Accept Friend ]` (Blue)** / **`[ Decline ]`**
+     - If mutual friends: **`[ 🤝 Friends ]`** (hover reveals `Unfriend`) + **`[ 💬 Message ]`** + **`[ 🔊 Voice ]`**
 2. **Profile Tabs**:
    - `Thoughts`: Root posts authored by this user (including pinned posts at top).
    - `Replies`: Public thread replies and discussions.
-   - `Likes`: Posts liked by this user (public or private toggle).
+   - `Likes`: Posts liked by this user.
    - `Bookmarks`: Private saved thoughts (visible only to account owner).
 3. **Public Broadcast Circles / Channels (Telegram Style)**:
    - Users can create a dedicated text broadcast channel where only they can post, and subscribers receive updates in real-time.
 4. **Tethered Hover Cards (Linear Style)**:
-   - Hovering over any `@handle` for >180ms opens a solid matte card with bio, stats, and a 1-tap `Follow` button without navigating away.
+   - Hovering over any `@handle` for >180ms opens a solid matte card with bio, stats, and a 1-tap `[ + Add Friend ]` or `[ 💬 Message ]` button without navigating away.
 
 ---
 
-### E. Search, Command Palette & Settings
+### F. Search, Command Palette & Settings
 1. **Global Command Palette (`Cmd + K`)**:
-   - Jump to any user (`@alex`), join a voice channel (`🔊 #general`), open a chat (`#sarah`), navigate tabs, or trigger a new post in 1 keystroke.
+   - Jump to any friend (`@alex`), join a voice channel (`🔊 #general`), open a chat (`#sarah`), navigate tabs, or trigger a new post in 1 keystroke.
 2. **Live Search**:
    - Search users by name/handle, voice channels, and community posts by keyword or hashtag (`#minimalism`).
 3. **Privacy & Security Settings**:
-   - DM Privacy: `Allow all users` vs. `Mutual followers only`.
-   - Online Presence: Toggle whether others can see when you are active.
+   - Online Presence: Toggle whether friends can see when you are active.
+   - Voice Privacy: Choose input/output audio devices and test sensitivity.
 
 ---
 
@@ -192,29 +211,7 @@ flowchart TD
 }
 ```
 
-### 3.2 Typography Hierarchy & Micro-Tracking
-- **Headers & Display**: `"Inter Display"`, `-0.035em` tracking, 600 weight (tight, confident, editorial).
-- **Body Content**: `"Inter"`, `-0.011em` tracking, `--text-high` (`#f4f4f6`, 15:1 contrast, zero eye strain).
-- **Metadata & Badges**: `"Inter"`, `--text-medium` (`#8e8e93`), 13px.
-- **Numbers & Metrics**: `"JetBrains Mono"`, `tabular-nums` (rock-solid vertical alignment on like odometers and pings).
-
-### 3.3 Spatial 3-Column Canvas
-```
-┌─────────┬────────────────────────────────────────────┬────────────────────────────┐
-│ 64px    │ 600px Max-Width Center Focus Stream        │ 360px Contextual Dock      │
-│ Iconic  │                                            │                            │
-│ Rail    │ ⚡ Following / Discover Switcher           │ 🔊 Live Lounges (#general) │
-│         │                                            │                            │
-│ 🏠 Home │ ┌────────────────────────────────────────┐ │ 💬 Recent Direct Messages  │
-│ 💬 Chat │ │ Inline Micro-Composer (≤300 chars)     │ │                            │
-│ 🔊 Voice│ └────────────────────────────────────────┘ │ 👤 Active Friends Online   │
-│ 👤 Prof │                                            │                            │
-│ ⚙️ Sett │ 📜 Post Card (Hairline, Slide Ticker)      │ 🔖 Pinned Bookmarks        │
-└─────────┴────────────────────────────────────────────┴────────────────────────────┘
-          ▼ Persistent Voice Dock: [ 🟢 In Voice: #general (14ms) · 🎙️ Mute · 🔴 Leave ]
-```
-
-### 3.4 Power-User Keyboard Navigation
+### 3.2 Power-User Keyboard Navigation
 | Shortcut | Action | Scope |
 | :--- | :--- | :--- |
 | **`j` / `k`** | Move focus down / up to the next post card | Global Feed |
@@ -224,7 +221,7 @@ flowchart TD
 | **`d`** | Toggle Deafen / Undeafen (when in voice channel) | Voice Dock |
 | **`Esc`** | Disconnect voice / Close modal / collapse split-pane | Modals & Voice |
 | **`/`** | Focus search input | Global |
-| **`Cmd + K` / `Ctrl + K`** | Open command palette (Jump to user, voice channel, call) | Global |
+| **`Cmd + K` / `Ctrl + K`** | Open command palette (Jump to friend, voice channel, call) | Global |
 | **`Cmd + Enter`** | Submit post or reply | Composers |
 | **`Enter`** | Send message (Shift+Enter for newline) | Chat input |
 | **`l`** | Like the currently highlighted post | Feed |
@@ -351,22 +348,33 @@ create table users (
     display_name varchar(64) not null,
     bio varchar(280) default '',
     custom_status varchar(64) default '',
-    allow_dms_from varchar(16) default 'all' check (allow_dms_from in ('all', 'mutuals')),
     created_at timestamptz default now(),
     updated_at timestamptz default now()
 );
 create index idx_users_handle on users(handle);
 
--- 2. Follows Graph
-create table follows (
-    follower_id uuid not null references users(id) on delete cascade,
-    following_id uuid not null references users(id) on delete cascade,
+-- 2. Friend Requests
+create table friend_requests (
+    id uuid primary key default gen_random_uuid(),
+    sender_id uuid not null references users(id) on delete cascade,
+    receiver_id uuid not null references users(id) on delete cascade,
+    status varchar(16) not null default 'pending' check (status in ('pending', 'accepted', 'declined', 'cancelled')),
     created_at timestamptz default now(),
-    primary key (follower_id, following_id)
+    updated_at timestamptz default now(),
+    unique (sender_id, receiver_id)
 );
-create index idx_follows_following on follows(following_id);
+create index idx_friend_requests_receiver on friend_requests(receiver_id, status);
 
--- 3. Posts & Thread Replies
+-- 3. Mutual Friendships (Bidirectional symmetric rows)
+create table friendships (
+    user_id uuid not null references users(id) on delete cascade,
+    friend_id uuid not null references users(id) on delete cascade,
+    created_at timestamptz default now(),
+    primary key (user_id, friend_id)
+);
+create index idx_friendships_user on friendships(user_id);
+
+-- 4. Posts & Thread Replies
 create table posts (
     id uuid primary key default gen_random_uuid(),
     author_id uuid not null references users(id) on delete cascade,
@@ -381,7 +389,7 @@ create index idx_posts_author_created on posts(author_id, created_at desc);
 create index idx_posts_parent_id on posts(parent_id) where parent_id is not null;
 create index idx_posts_created_at on posts(created_at desc);
 
--- 4. Likes
+-- 5. Likes
 create table likes (
     user_id uuid not null references users(id) on delete cascade,
     post_id uuid not null references posts(id) on delete cascade,
@@ -390,7 +398,7 @@ create table likes (
 );
 create index idx_likes_post on likes(post_id);
 
--- 5. Bookmarks
+-- 6. Bookmarks
 create table bookmarks (
     user_id uuid not null references users(id) on delete cascade,
     post_id uuid not null references posts(id) on delete cascade,
@@ -399,7 +407,7 @@ create table bookmarks (
 );
 create index idx_bookmarks_user on bookmarks(user_id, created_at desc);
 
--- 6. Post Emoji Reactions
+-- 7. Post Emoji Reactions
 create table post_reactions (
     id uuid primary key default gen_random_uuid(),
     post_id uuid not null references posts(id) on delete cascade,
@@ -410,7 +418,7 @@ create table post_reactions (
 );
 create index idx_post_reactions_post on post_reactions(post_id);
 
--- 7. Conversations (Direct Messages & Channels)
+-- 8. Conversations (Direct Messages & Channels)
 create table conversations (
     id uuid primary key default gen_random_uuid(),
     is_group boolean default false,
@@ -420,7 +428,7 @@ create table conversations (
 );
 create index idx_conversations_updated on conversations(updated_at desc);
 
--- 8. Conversation Members
+-- 9. Conversation Members (Only Mutual Friends)
 create table conversation_members (
     conversation_id uuid not null references conversations(id) on delete cascade,
     user_id uuid not null references users(id) on delete cascade,
@@ -432,7 +440,7 @@ create table conversation_members (
 );
 create index idx_conv_members_user on conversation_members(user_id);
 
--- 9. Direct Messages
+-- 10. Direct Messages
 create table messages (
     id uuid primary key default gen_random_uuid(),
     conversation_id uuid not null references conversations(id) on delete cascade,
@@ -445,7 +453,7 @@ create table messages (
 );
 create index idx_messages_conv_created on messages(conversation_id, created_at asc);
 
--- 10. Voice Channels (Discord-Style Persistent Audio Rooms)
+-- 11. Voice Channels (Discord-Style Persistent Audio Rooms)
 create table voice_channels (
     id uuid primary key default gen_random_uuid(),
     name varchar(64) not null,
@@ -483,22 +491,23 @@ sequenceDiagram
     WS-->>Alice: Ack JSON: { "type": "chat:ack", "temp_id": "tmp-1", "id": "msg-999", "status": "sent" }
 ```
 
-### 6.2 Discord-Style Voice Channel Flow (LiveKit SFU)
+### 6.2 Friend Request WebSocket Push
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as User (Client)
+    actor Alice as Alice (Sender)
     participant API as FastAPI Backend
-    participant LiveKit as LiveKit SFU (WebRTC)
     participant Redis as Redis Pub/Sub
+    actor Bob as Bob (Receiver)
 
-    User->>API: POST /api/v1/voice/channels/{id}/join
-    API->>API: Add to voice_channel_participants & mint LiveKit JWT token
-    API->>Redis: PUBLISH "voice:channel:{id}" { event: "user_joined", user_id: "..." }
-    API-->>User: Return { room_name: "channel-123", token: "jwt_token" }
-    User->>LiveKit: Connect WebRTC stream over UDP (Opus 48kHz with selected mic/output)
-    LiveKit<<-->>User: Bi-directional sub-40ms audio with active speaker detection
-    Note over User,LiveKit: If network drops, client triggers instant ICE Restart in <500ms
+    Alice->>API: POST /api/v1/friends/request (target_user_id: "bob-uuid")
+    API->>API: Insert friend_requests row
+    API->>Redis: PUBLISH "user:notifications:bob" { event: "friend_request", from: "alice" }
+    Redis-->>Bob: WebSocket push: "Alice sent you a friend request"
+    Bob->>API: POST /api/v1/friends/accept (request_id: "req-123")
+    API->>API: Insert bidirectional friendships rows & create conversation
+    API->>Redis: PUBLISH "user:notifications:alice" { event: "friend_accepted", by: "bob" }
+    Redis-->>Alice: WebSocket push: "You and Bob are now friends!"
 ```
 
 ---
@@ -508,7 +517,8 @@ sequenceDiagram
 1. **Scaffold Container Infrastructure**: Create `frontend/`, `backend/`, `init.sql`, and `docker-compose.yml` with all 5 services (`frontend`, `backend`, `livekit`, `db`, `redis`).
 2. **Implement FastAPI Backend**:
    - AsyncPG connection pool & JWT authentication.
-   - REST endpoints for Feed/Posts/Likes/Reposts/Bookmarks/Search.
+   - Friend Request & Friendship endpoints (`POST /friends/request`, `POST /friends/accept`, `POST /friends/decline`, `DELETE /friends/{id}`).
+   - REST endpoints for Friends Feed/Discover/Posts/Likes/Reposts/Bookmarks/Search.
    - Native WebSocket connection hub with Redis Pub/Sub.
    - Voice channel endpoints (`GET /voice/channels`, `POST /voice/channels/{id}/join`, `POST /voice/channels/{id}/leave`) with LiveKit token minting.
 3. **Build Next.js 15 Solid Monochrome + Apple Blue & Bright Green UI**:
@@ -516,8 +526,8 @@ sequenceDiagram
    - Spatial App Shell: 64px left floating icon rail, 600px center focus stream, 360px contextual right dock.
    - Micro-Composer with circular SVG character counter ring (color shifts to amber/red) and Apple Blue `Post` button (`Cmd+Enter`).
    - Post cards with vertical sliding numeric odometer tickers, threaded replies, and emoji reactions.
-   - Discord-fast split-pane DM interface with WhatsApp delivery ticks (`✓`, `✓✓`, blue `✓✓`), typing indicators, and presence.
-   - User profile pages with tabbed timelines (`Thoughts`, `Replies`, `Likes`, `Bookmarks`).
+   - WhatsApp / Signal split-pane DM interface with delivery ticks (`✓`, `✓✓`, blue `✓✓`), typing indicators, and presence.
+   - User profile pages with tabbed timelines (`Thoughts`, `Replies`, `Likes`, `Bookmarks`) and dynamic friend status buttons.
    - Quick Command Palette (`Cmd+K`) and keyboard navigation (`j`/`k`, `n`, `c`, `m`, `d`, `Esc`, `/`).
 4. **Implement Discord Voice Channels & Audio Hardware Settings**:
    - `VoiceDock.tsx` persistent solid obsidian dock with live ping, mute, deafen, settings gear, and disconnect controls.
@@ -528,8 +538,8 @@ sequenceDiagram
    - Per-user volume sliders (0–200%) and Push-to-Talk / VAD noise suppression.
 5. **End-to-End Verification**:
    - Run `docker compose up --build` and verify all 5 containers pass healthchecks.
-   - Test sub-20ms WebSocket message delivery between two separate browser windows.
+   - Test sending a friend request from User A to User B, receiving the real-time WebSocket invite, accepting, and instantly unlocking DMs.
+   - Test sub-20ms WebSocket message delivery between two friends.
    - Test microphone and output device selection with live VU meter.
    - Test joining a voice channel, verify live speaking glowing rings, mute/deafen hotkeys, and persistent audio while browsing the feed.
-   - Test network interruption simulation (temporary socket disconnect) and verify automatic reconnection in <500ms.
    - Verify keyboard navigation and responsive design across desktop and mobile viewports.

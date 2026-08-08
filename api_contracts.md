@@ -1,6 +1,6 @@
 # ⚡ Project LOOP — API & Data Contracts Specification
 
-> Complete TypeScript Interfaces, FastAPI Pydantic v2 Models, and WebSocket Message Envelopes.
+> Complete TypeScript Interfaces, FastAPI Pydantic v2 Models, and WebSocket Message Envelopes for the Mutual Friend System.
 
 ---
 
@@ -14,13 +14,18 @@ export interface User {
   displayName: string;
   bio: string;
   customStatus: string;
-  allowDmsFrom: 'all' | 'mutuals';
-  allowCallsFrom?: 'all' | 'mutuals';
-  followersCount: number;
-  followingCount: number;
+  friendsCount: number;
   thoughtsCount: number;
-  isFollowing?: boolean;
+  friendshipStatus: 'none' | 'pending_sent' | 'pending_received' | 'friends';
   isOnline?: boolean;
+  createdAt: string;
+}
+
+export interface FriendRequest {
+  id: string;
+  sender: User;
+  receiver: User;
+  status: 'pending' | 'accepted' | 'declined';
   createdAt: string;
 }
 
@@ -28,6 +33,7 @@ export interface Post {
   id: string;
   authorId: string;
   author: {
+    id: string;
     handle: string;
     displayName: string;
     customStatus?: string;
@@ -75,7 +81,7 @@ export interface Conversation {
   isPinned: boolean;
   isMuted: boolean;
   unreadCount: number;
-  otherUser?: User;
+  friend?: User;
   lastMessage?: Message;
   updatedAt: string;
 }
@@ -134,6 +140,14 @@ class TokenResponse(BaseModel):
     tokenType: str = "bearer"
     user: Dict
 
+# Friend Requests
+class FriendRequestCreate(BaseModel):
+    targetUserId: UUID
+
+class FriendRequestAction(BaseModel):
+    requestId: UUID
+    action: str = Field(..., pattern=r"^(accept|decline|cancel)$")
+
 # Post Schemas
 class PostCreate(BaseModel):
     content: str = Field(..., min_length=1, max_length=300)
@@ -161,74 +175,4 @@ class VoiceTokenResponse(BaseModel):
     roomName: str
     token: str
     wsUrl: str
-```
-
----
-
-## 3. WebSocket Event JSON Framing
-
-### Client -> Server Events:
-```json
-// 1. Send Message
-{
-  "type": "chat:send",
-  "tempId": "tmp-uuid-1",
-  "conversationId": "conv-uuid-123",
-  "content": "Building LOOP with sub-20ms latency!",
-  "quotedMessageId": null
-}
-
-// 2. Typing Ping
-{
-  "type": "chat:typing",
-  "conversationId": "conv-uuid-123"
-}
-
-// 3. Mark Read
-{
-  "type": "chat:read",
-  "conversationId": "conv-uuid-123",
-  "messageIds": ["msg-1", "msg-2"]
-}
-
-// 4. Voice Speaking State (Broadcast to channel)
-{
-  "type": "voice:speaking",
-  "channelId": "chan-123",
-  "isSpeaking": true
-}
-```
-
-### Server -> Client Broadcasts:
-```json
-// 1. New Message Push
-{
-  "type": "chat:new",
-  "id": "msg-uuid-999",
-  "conversationId": "conv-uuid-123",
-  "sender": {
-    "id": "user-uuid-1",
-    "handle": "alex",
-    "displayName": "Alexander"
-  },
-  "content": "Building LOOP with sub-20ms latency!",
-  "status": "delivered",
-  "createdAt": "2026-08-09T01:50:00Z"
-}
-
-// 2. Message ACK (Updates temporary message to permanent)
-{
-  "type": "chat:ack",
-  "tempId": "tmp-uuid-1",
-  "id": "msg-uuid-999",
-  "status": "sent"
-}
-
-// 3. Read Status Update (Turns double tick blue)
-{
-  "type": "chat:read_receipt",
-  "conversationId": "conv-uuid-123",
-  "readByUserId": "user-uuid-2",
-  "readAt": "2026-08-09T01:50:02Z"
-}
 ```
