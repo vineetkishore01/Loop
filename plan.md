@@ -28,30 +28,14 @@ flowchart TD
 
 ---
 
-## 2. Complete Essential Feature Catalog
+## 2. The 5 Core Application Screens
 
-### A. The Spam-Free Mutual Friend System (Discord + WhatsApp Model)
-*No one-way asymmetric follows. No confusion over who can message whom. Everything is clean, reciprocal, and high-signal.*
-
-1. **Friend Requests (`[ + Add Friend ]` / `[ Accept ]` / `[ Decline ]`)**:
-   - Send a friend request by clicking **`[ + Add Friend ]`** on any profile, hover card, or by searching their `@handle`.
-   - Receiver gets an instant real-time notification with 1-tap `[ Accept ]` or `[ Decline ]`.
-   - Once accepted, both users become **Mutual Friends** (`🤝 Friends`).
-2. **Clean, Uncluttered DMs**:
-   - Only accepted mutual friends appear in your DM conversation list.
-   - Zero unsolicited spam inboxes, zero stranger message requests.
-3. **Friend Status Indicators**:
-   - Live presence indicator on friend avatars: **Bright Green (`#30d158`)** when online + custom text status (e.g. `💬 "building loop"`, `⚡ "deep work"`).
-4. **Pending Requests Manager**:
-   - Dedicated tab in Notifications / Friends list to review incoming and outgoing friend requests.
-
----
-
-### B. The Feed & Stream (Friends Stream + Discover Pulse)
+### Screen 1: The Stream (`/`) — *The Daily Habit & Intellectual Pulse*
 1. **Dual Feed Engine**:
    - `Friends`: 100% pure chronological stream of thoughts from your **accepted mutual friends** (zero ads, zero algorithms, high intimacy).
    - `Discover`: Real-time global pulse of high-signal thoughts across the community to discover new people and send friend requests.
 2. **Micro-Post Composer (≤300 chars)**:
+   - Sits at the top of the feed with an auto-growing textarea.
    - Live Apple Blue circular SVG progress ring as you type (shifts to Amber at 280 chars, Red at 300).
    - Hotkey publish: `Cmd + Enter` / `Ctrl + Enter`.
    - Rich text formatting: Bold (`**`), Italic (`*`), Inline Code (`` `code` ``), and Blockquotes (`>`).
@@ -67,47 +51,36 @@ flowchart TD
 
 ---
 
-### C. Discord-Style Voice Channels & Audio Hardware Settings (LiveKit SFU + Opus)
-
-#### 1. 1-Tap Voice Channel Drop-in & Lounges
-- Click any voice channel (e.g. `🔊 #general-lounge`, `🔊 #builders`, `🔊 #chill`) to immediately connect to the audio room.
-- Channel participant list shows which friends are currently inside with **Bright Green (`#30d158`) active speaking rings**.
-- Leave whenever you want with `Esc` or the Disconnect button.
-
-#### 2. Discord-Style Audio Device Configuration (`Settings -> Voice & Audio`)
-- **Input Device Selector (Microphone)**: Real-time dropdown populated via `navigator.mediaDevices.enumerateDevices()` (e.g. `MacBook Pro Microphone`, `AirPods Pro`, `USB Mic - Blue Yeti`).
-- **Output Device Selector (Headphones/Speakers)**: Dropdown with output sink routing via `HTMLMediaElement.setSinkId()` (e.g. `AirPods Pro`, `External Speakers`, `Default System Output`).
-- **"Let's Check Your Mic" Live VU Meter & Audio Test**:
-  - Live animated audio level bar (green gradient) showing current decibel input.
-  - Optional `Mic Test` toggle to loop audio back to your headphones with 0ms latency to test your voice.
-- **Input Sensitivity Gate**:
-  - `Auto-Sensitivity` toggle (dynamic noise threshold).
-  - Manual sensitivity slider (`-100 dB` to `0 dB`) to eliminate mechanical keyboard clicks and fan hum.
-- **Noise Suppression & Echo Cancellation**:
-  - Dedicated hardware DSP switches: `Echo Cancellation`, `Noise Suppression`, `Auto Gain Control`.
-
-#### 3. Persistent Floating Voice Dock (Global)
-- When connected, a solid obsidian dock floats at the bottom left across all routes:
-  `🟢 In Voice: #general (18ms ping) · 🎙️ Mute (M) · 🎧 Deafen (D) · ⚙️ Audio Settings · 🔴 Disconnect (Esc)`
-- Browse the feed, write posts, or chat in DMs while talking in real-time with zero audio interruption.
-
-#### 4. Seamless Auto-Reconnection & Fast ICE Restart
-- If the user's Wi-Fi drops, switches to cellular, or encounters network jitter, the WebRTC engine initiates an **instant ICE Restart within <500ms** without dropping the audio session.
-- Connection State Indicator: Live ping meter in milliseconds (`🟢 18ms`, `🟡 110ms`, `🔴 Reconnecting...`).
-- Silent JWT Token Refresh: Background token rotation so multi-hour voice sessions never disconnect.
-
-#### 5. Per-User Volume Sliders (0% to 200%)
-- Right-click / hover any participant in a voice channel to adjust their individual volume from **0% to 200%**.
-- Discontinuous Transmission (DTX) drops bandwidth to 0 kbps when silent.
-
-#### 6. Discord-Style Audio Earcons
-- Subtle tactile procedural Web Audio chimes when joining a channel, disconnecting, muting, or unmuting.
+### Screen 2: The Lounges (`/voice`) — *The Ambient Drop-In Audio Hub*
+1. **1-Tap Voice Channel Drop-in**:
+   - Click any voice channel (e.g. `🔊 #general-lounge`, `🔊 #builders`, `🔊 #chill`) to immediately connect to the audio room.
+   - Channel participant list shows which friends are currently inside with **Bright Green (`#30d158`) active speaking rings**.
+   - Leave whenever you want with `Esc` or the Disconnect button.
+2. **Discord-Style Audio Hardware Settings (`Settings -> Voice & Audio`)**:
+   - **Input Device Selector (Microphone)**: Real-time dropdown populated via `navigator.mediaDevices.enumerateDevices()`.
+   - **Output Device Selector (Headphones/Speakers)**: Dropdown with output sink routing via `HTMLMediaElement.setSinkId()`.
+   - **"Let's Check Your Mic" Live VU Meter**: Animated green decibel level bar + zero-latency audio loopback test.
+   - **Input Sensitivity Gate**: Auto-sensitivity toggle or manual slider (`-100 dB` to `0 dB`).
+   - **Hardware DSP Switches**: Dedicated toggles for Echo Cancellation, Noise Suppression, and Auto Gain Control.
+3. **Persistent Floating Voice Dock (Global)**:
+   - When connected, a solid obsidian dock floats at the bottom left across all routes:
+     `🟢 In Voice: #general (18ms ping) · 🎙️ Mute (M) · 🎧 Deafen (D) · ⚙️ Audio Settings · 🔴 Disconnect (Esc)`
+   - Browse the feed, write posts, or chat in DMs while talking in real-time with zero audio interruption.
+4. **Seamless Auto-Reconnection & Fast ICE Restart**:
+   - If the user's Wi-Fi drops, switches to cellular, or encounters network jitter, the WebRTC engine initiates an **instant ICE Restart within <500ms** without dropping the audio session.
+   - Connection State Indicator: Live ping meter in milliseconds (`🟢 18ms`, `🟡 110ms`, `🔴 Reconnecting...`).
+   - Silent JWT Token Refresh: Background token rotation so multi-hour voice sessions never disconnect.
+5. **Per-User Volume Sliders (0% to 200%)**:
+   - Right-click / hover any participant in a voice channel to adjust their individual volume from **0% to 200%**.
+   - Discontinuous Transmission (DTX) drops bandwidth to 0 kbps when silent.
+6. **Discord-Style Audio Earcons**:
+   - Subtle tactile procedural Web Audio chimes when joining a channel, disconnecting, muting, or unmuting.
 
 ---
 
-### D. WhatsApp / Signal Desktop Chat Architecture
+### Screen 3: The Split-Pane Chat (`/messages`) — *WhatsApp / Signal Speed & Zero Spam*
 1. **Split-Pane Ergonomics (340px Left Rail + Fluid Chat Viewport)**:
-   - Left list shows friends with live green presence dots, last message preview, unread count badges, and pinned chats.
+   - Left list shows mutual friends with live green presence dots, last message preview, unread count badges, and pinned chats.
 2. **WhatsApp-Style Read Receipts**:
    - `✓` Sent to server.
    - `✓✓` Delivered to friend's active socket.
@@ -127,28 +100,35 @@ flowchart TD
 
 ---
 
-### E. Profiles, Circles & Public Channels
-1. **User Identity (`/@handle`)**:
+### Screen 4: Broadcast Circles (`/circles`) — *Telegram-Style 1-Way Channels*
+1. **Creator Broadcast Publishing**:
+   - Users can create 1-way text broadcast circles (e.g. `@alex/systems`, `@sarah/rust-notes`) to publish long-form engineering notes, updates, or changelogs.
+2. **100% Guaranteed Delivery**:
+   - Zero algorithmic suppression. Every subscriber receives the broadcast in their Circles feed in real-time.
+3. **Threaded Community Discussions**:
+   - Subscribers can tap into a dedicated nested discussion thread under any broadcast post to discuss insights.
+
+---
+
+### Screen 5: The Identity & Vault (`/@handle`) — *Your Digital Portfolio*
+1. **User Identity Header**:
+   - 72px avatar with **Bright Green Online Presence Dot (`#30d158`)**.
    - Display name, `@handle`, bio (≤280 chars), custom status, joined date.
-   - Stats Bar: `Friends: 48`, `Thoughts: 124`.
+   - Stats Bar: `🤝 48 Mutual Friends`, `✍️ 124 Thoughts`.
    - **Dynamic Relationship Action Buttons**:
      - If not connected: Solid Apple Blue **`[ + Add Friend ]`**
      - If request sent: Solid Charcoal **`[ Request Sent ⏳ ]`** (click to cancel)
      - If request received: **`[ Accept Friend ]` (Blue)** / **`[ Decline ]`**
-     - If mutual friends: **`[ 🤝 Friends ]`** (hover reveals `Unfriend`) + **`[ 💬 Message ]`** + **`[ 🔊 Voice ]`**
-2. **Profile Tabs**:
-   - `Thoughts`: Root posts authored by this user (including pinned posts at top).
-   - `Replies`: Public thread replies and discussions.
-   - `Likes`: Posts liked by this user.
-   - `Bookmarks`: Private saved thoughts (visible only to account owner).
-3. **Public Broadcast Circles / Channels (Telegram Style)**:
-   - Users can create a dedicated text broadcast channel where only they can post, and subscribers receive updates in real-time.
-4. **Tethered Hover Cards (Linear Style)**:
-   - Hovering over any `@handle` for >180ms opens a solid matte card with bio, stats, and a 1-tap `[ + Add Friend ]` or `[ 💬 Message ]` button without navigating away.
+     - If mutual friends: **`[ 🤝 Friends ]`** + **`[ 💬 Message ]`** + **`[ 🔊 Voice ]`**
+2. **The 4 Content Tabs**:
+   - `Thoughts`: Authored root posts (with up to 3 pinned thoughts at top).
+   - `Replies / Threads`: Nested public discussions and thread conversations.
+   - `Likes`: Thoughts liked by this user.
+   - `Bookmarks 🔒`: Private personal vault of saved thoughts (visible only to you).
 
 ---
 
-### F. Search, Command Palette & Settings
+### Navigation: Global Command Palette (`Cmd + K`) & Search
 1. **Global Command Palette (`Cmd + K`)**:
    - Jump to any friend (`@alex`), join a voice channel (`🔊 #general`), open a chat (`#sarah`), navigate tabs, or trigger a new post in 1 keystroke.
 2. **Live Search**:
