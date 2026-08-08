@@ -1,6 +1,6 @@
 # ⚡ Project LOOP — Master Design & Architecture Specification
 
-> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in an **ultra-clean, solid opaque modern dark design** (layered matte monochrome surfaces + Apple Blue and Bright Green accents). **100% flat and solid—zero glassmorphism, zero transparency, zero frosted blur.** Just sharp text, sub-20ms chat delivery, full Discord-style audio hardware device settings, and crystal-clear <40ms voice channels with automatic reconnection.
+> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in a jaw-dropping **Technical Authenticity & Quiet Luxury aesthetic** (5-tier obsidian surface ladder + Modern Apple Blue `#007aff` and Bright Apple Green `#30d158` accents). **100% solid, flat, and opaque—zero glassmorphism, zero transparency, zero frosted blur.** Just sharp text, sub-20ms chat delivery, full Discord-style audio hardware device settings, and crystal-clear <40ms voice channels with automatic reconnection.
 
 ---
 
@@ -19,7 +19,7 @@ flowchart TD
         Voice["🎙️ 1-Tap Discord Voice Channels\nDrop in/out freely, LiveKit SFU + Opus 48kHz (Sub-40ms latency, persistent bottom dock)"]
         Speed["⚡ Sub-20ms WebSocket Chat\nInstant optimistic updates for feed, likes, and messages"]
         Palette["⚡ Global Command Palette (Cmd+K)\nJump to any user, chat, bookmark, or action in 1 keystroke"]
-        Design["🎨 Solid Matte Monochrome + Apple Blue (#007aff) & Bright Green (#30d158)\n100% Opaque layered surfaces with 1px precision hairline borders"]
+        Design["🎨 5-Tier Obsidian Surface Ladder + Apple Blue (#007aff) & Bright Green (#30d158)\n100% Solid matte surfaces with 1px precision optical hairlines"]
     end
 
     Giants --> ProductCore
@@ -34,11 +34,11 @@ flowchart TD
    - `Following`: 100% pure chronological stream of thoughts from people you follow (zero ads, zero algorithmic insertion).
    - `Discover`: Real-time global pulse of latest thoughts across the community.
 2. **Micro-Post Composer (≤300 chars)**:
-   - Live Apple Blue circular progress ring as you type.
+   - Live Apple Blue circular SVG progress ring as you type (shifts to Amber at 280 chars, Red at 300).
    - Hotkey publish: `Cmd + Enter` / `Ctrl + Enter`.
    - Rich text formatting: Bold (`**`), Italic (`*`), Inline Code (`` `code` ``), and Blockquotes (`>`).
 3. **Post Interactions**:
-   - **Like / Heart**: Tactile numeric slide ticker (`tabular-nums`) with vibrant Pink/Red (`#ff375f`) glow.
+   - **Like / Heart**: Tactile numeric odometer ticker (`tabular-nums`) with 120ms spring scale bounce (`scale(1.2) -> scale(1.0)`) and Pink/Red (`#ff375f`) glow.
    - **Repost / Echo**: 1-Tap repost directly to your followers.
    - **Quote Thought**: Repost with your own commentary attached above the original card.
    - **Threaded Nested Replies**: Clean vertical connector hairlines with indented responses.
@@ -69,7 +69,7 @@ flowchart TD
   - Dedicated hardware DSP switches: `Echo Cancellation`, `Noise Suppression`, `Auto Gain Control`.
 
 #### 3. Persistent Floating Voice Dock (Global)
-- When connected, a solid matte dock floats at the bottom left across all routes:
+- When connected, a solid obsidian dock floats at the bottom left across all routes:
   `🟢 In Voice: #general (18ms ping) · 🎙️ Mute (M) · 🎧 Deafen (D) · ⚙️ Audio Settings · 🔴 Disconnect (Esc)`
 - Browse the feed, write posts, or chat in DMs while talking in real-time with zero audio interruption.
 
@@ -140,40 +140,40 @@ flowchart TD
 
 ---
 
-## 3. Solid Opaque Modern Dark Design System
+## 3. The 2026 "Technical Authenticity & Quiet Luxury" Design System
 
-### 3.1 Solid Matte Palette & Semantic Tokens (`globals.css`)
-**100% Solid & Opaque.** Surfaces are layered matte charcoals with 1px precision hairline borders. No transparency, no backdrop-filter blur:
+### 3.1 5-Tier Obsidian Surface Ladder (`globals.css`)
+**100% Solid & Opaque.** Depth is achieved through micro-luminance elevation rather than muddy drop shadows or translucent blur:
 
 ```css
 :root {
-  /* 100% Solid Opaque Surface Ladder (Pitch Black -> Layered Matte Charcoal) */
-  --bg-canvas: #060608;             /* Solid viewport background */
-  --bg-surface-0: #0b0b0e;          /* Solid nav rail & sidebar */
-  --bg-surface-1: #111115;          /* Solid post cards & chat bubbles */
-  --bg-surface-2: #18181d;          /* Solid composer & elevated panels */
-  --bg-surface-hover: #22222a;      /* Solid hover state on interactive rows */
-  --bg-surface-active: #2b2b35;     /* Solid pressed button state */
+  /* 5-Tier Obsidian Surface Ladder (Pitch Black -> Layered Matte Charcoal) */
+  --bg-canvas: #050507;             /* Tier 1: Viewport Base Void */
+  --bg-surface-0: #09090c;          /* Tier 2: Structural Nav Rail & Sidebar */
+  --bg-surface-1: #0e0e12;          /* Tier 3: Post Cards & Message Bubbles */
+  --bg-surface-2: #15151b;          /* Tier 4: Elevated Composers, Popovers, Dialogs */
+  --bg-surface-hover: #1c1c24;      /* Tier 5: High-Responsiveness Hover Rows */
+  --bg-surface-active: #24242f;     /* Pressed State */
 
-  /* Precision Hairline Borders (Crisp 1px solid lines) */
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-medium: rgba(255, 255, 255, 0.14);
-  --border-strong: rgba(255, 255, 255, 0.28);
-  --border-focus: #007aff;          /* Solid Apple Blue focus ring */
+  /* Precision Optical Hairlines (Crisp 1px solid lines) */
+  --border-subtle: rgba(255, 255, 255, 0.07); /* Resting separator */
+  --border-medium: rgba(255, 255, 255, 0.16); /* Hover state */
+  --border-strong: rgba(255, 255, 255, 0.28); /* Active modal edge */
+  --border-focus: #007aff;                    /* Apple Blue focus ring */
 
   /* High-Scannability Typography */
-  --text-high: #f4f4f6;             /* Primary text: crisp off-white */
-  --text-medium: #a1a1aa;           /* Secondary text: silver guidance */
-  --text-subtle: #71717a;           /* Tertiary text: timestamps, handles */
-  --text-muted: #474750;            /* Disabled states, subtle placeholders */
+  --text-high: #f4f4f6;             /* Primary text: crisp off-white (15:1 contrast) */
+  --text-medium: #8e8e93;           /* Secondary text: classic Apple silver */
+  --text-subtle: #636366;           /* Tertiary text: timestamps, handles */
+  --text-muted: #3a3a3c;            /* Disabled states, subtle placeholders */
 
-  /* Modern Apple Blue Accent Suite (Primary Actions, CTAs, Badges) */
+  /* Modern Apple Blue Suite (Primary Actions, CTAs, Badges) */
   --apple-blue: #007aff;            /* Solid primary action blue */
   --apple-blue-hover: #0066d6;      /* Solid hover state for primary buttons */
   --apple-blue-subtle: rgba(0, 122, 255, 0.14); /* Badge & selection background */
   --apple-blue-glow: 0 0 16px rgba(0, 122, 255, 0.25);
 
-  /* Modern Bright Green Accent Suite (Live Voice, Active Mic, Online Presence) */
+  /* Modern Bright Green Suite (Live Voice, Active Mic, Online Presence) */
   --bright-green: #30d158;          /* Solid Apple Bright Green for mic/voice */
   --bright-green-glow: 0 0 16px rgba(48, 209, 88, 0.35); /* Active speaker avatar ring */
   --bright-green-subtle: rgba(48, 209, 88, 0.14); /* In-voice status chip */
@@ -192,7 +192,29 @@ flowchart TD
 }
 ```
 
-### 3.2 Power-User Keyboard Navigation
+### 3.2 Typography Hierarchy & Micro-Tracking
+- **Headers & Display**: `"Inter Display"`, `-0.035em` tracking, 600 weight (tight, confident, editorial).
+- **Body Content**: `"Inter"`, `-0.011em` tracking, `--text-high` (`#f4f4f6`, 15:1 contrast, zero eye strain).
+- **Metadata & Badges**: `"Inter"`, `--text-medium` (`#8e8e93`), 13px.
+- **Numbers & Metrics**: `"JetBrains Mono"`, `tabular-nums` (rock-solid vertical alignment on like odometers and pings).
+
+### 3.3 Spatial 3-Column Canvas
+```
+┌─────────┬────────────────────────────────────────────┬────────────────────────────┐
+│ 64px    │ 600px Max-Width Center Focus Stream        │ 360px Contextual Dock      │
+│ Iconic  │                                            │                            │
+│ Rail    │ ⚡ Following / Discover Switcher           │ 🔊 Live Lounges (#general) │
+│         │                                            │                            │
+│ 🏠 Home │ ┌────────────────────────────────────────┐ │ 💬 Recent Direct Messages  │
+│ 💬 Chat │ │ Inline Micro-Composer (≤300 chars)     │ │                            │
+│ 🔊 Voice│ └────────────────────────────────────────┘ │ 👤 Active Friends Online   │
+│ 👤 Prof │                                            │                            │
+│ ⚙️ Sett │ 📜 Post Card (Hairline, Slide Ticker)      │ 🔖 Pinned Bookmarks        │
+└─────────┴────────────────────────────────────────────┴────────────────────────────┘
+          ▼ Persistent Voice Dock: [ 🟢 In Voice: #general (14ms) · 🎙️ Mute · 🔴 Leave ]
+```
+
+### 3.4 Power-User Keyboard Navigation
 | Shortcut | Action | Scope |
 | :--- | :--- | :--- |
 | **`j` / `k`** | Move focus down / up to the next post card | Global Feed |
@@ -490,15 +512,15 @@ sequenceDiagram
    - Native WebSocket connection hub with Redis Pub/Sub.
    - Voice channel endpoints (`GET /voice/channels`, `POST /voice/channels/{id}/join`, `POST /voice/channels/{id}/leave`) with LiveKit token minting.
 3. **Build Next.js 15 Solid Monochrome + Apple Blue & Bright Green UI**:
-   - `globals.css` with solid opaque surface ladder, 1px hairline tokens, Modern Apple Blue (`#007aff`), and Bright Apple Green (`#30d158`).
-   - Spatial App Shell: Left floating icon rail, center focus stream, contextual right dock.
-   - Micro-Composer with character counter ring and Apple Blue `Post` button (`Cmd+Enter`).
-   - Post cards with vertical sliding numeric tickers, threaded replies, and emoji reactions.
+   - `globals.css` with 5-tier obsidian surface ladder, 1px optical hairline tokens, Modern Apple Blue (`#007aff`), and Bright Apple Green (`#30d158`).
+   - Spatial App Shell: 64px left floating icon rail, 600px center focus stream, 360px contextual right dock.
+   - Micro-Composer with circular SVG character counter ring (color shifts to amber/red) and Apple Blue `Post` button (`Cmd+Enter`).
+   - Post cards with vertical sliding numeric odometer tickers, threaded replies, and emoji reactions.
    - Discord-fast split-pane DM interface with WhatsApp delivery ticks (`✓`, `✓✓`, blue `✓✓`), typing indicators, and presence.
    - User profile pages with tabbed timelines (`Thoughts`, `Replies`, `Likes`, `Bookmarks`).
    - Quick Command Palette (`Cmd+K`) and keyboard navigation (`j`/`k`, `n`, `c`, `m`, `d`, `Esc`, `/`).
 4. **Implement Discord Voice Channels & Audio Hardware Settings**:
-   - `VoiceDock.tsx` persistent solid matte dock with live ping, mute, deafen, settings gear, and disconnect controls.
+   - `VoiceDock.tsx` persistent solid obsidian dock with live ping, mute, deafen, settings gear, and disconnect controls.
    - **Audio Device Settings Modal**: Microphone input dropdown, headphone output dropdown, and live VU decibel meter with "Test Mic" loopback.
    - Voice channel list showing active participants and live **Bright Green speaking indicator rings**.
    - Fast auto-reconnect and ICE restart on network jitter / Wi-Fi drops.
