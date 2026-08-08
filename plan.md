@@ -1,6 +1,6 @@
 # ⚡ Project LOOP — Master Design & Architecture Specification
 
-> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in an **ultra-clean, solid opaque modern dark design** (layered matte monochrome surfaces + Apple Blue and Bright Green accents). **100% flat and solid—zero glassmorphism, zero transparency, zero frosted blur.** Just sharp text, sub-20ms chat delivery, and crystal-clear <40ms voice channels with automatic reconnection.
+> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in an **ultra-clean, solid opaque modern dark design** (layered matte monochrome surfaces + Apple Blue and Bright Green accents). **100% flat and solid—zero glassmorphism, zero transparency, zero frosted blur.** Just sharp text, sub-20ms chat delivery, full Discord-style audio hardware device settings, and crystal-clear <40ms voice channels with automatic reconnection.
 
 ---
 
@@ -10,7 +10,7 @@
 flowchart TD
     subgraph Giants ["The 4 Best-of-Breed Foundations"]
         X["𝕏 / Twitter\n• Chronological Following & Discover feeds\n• 1-Click Reposts & Quote thoughts\n• Threaded replies with connector hairlines\n• Bookmarks, Pin to profile & Edit post window"]
-        Discord["Discord\n• 1-Tap Persistent Voice Channels & Lounges (Sub-40ms LiveKit SFU)\n• Auto-Reconnect with ICE Restart & Connection Quality Meter\n• Voice Activity Detection (VAD) & Active Speaker Bright Green Glow Rings\n• Sub-20ms WebSocket DMs & Group chats\n• Live presence, custom text statuses & emoji reactions"]
+        Discord["Discord\n• 1-Tap Persistent Voice Channels (Sub-40ms LiveKit SFU)\n• Input/Output Device Selector (Mic & Headphone) + Mic Test VU Bar\n• Auto-Reconnect with ICE Restart & Connection Quality Meter\n• Voice Activity Detection (VAD) & Active Speaker Bright Green Glow Rings\n• Sub-20ms WebSocket DMs & Group chats"]
         Telegram["Telegram\n• Broadcast Channels / Public Circles\n• Search history inside any DM conversation\n• 'Saved Messages' personal private scratchpad\n• Keyboard-first shortcuts & instant navigation"]
         WhatsApp["WhatsApp\n• Read receipts & delivery ticks (✓, ✓✓, ✓✓ blue)\n• In-reply-to quote preview bubbles in chat\n• DM privacy (Allow all vs. Mutuals only)\n• Pin conversations & mute/archive chats"]
     end
@@ -49,29 +49,41 @@ flowchart TD
 
 ---
 
-### B. Discord-Style 1-Tap Voice Channels & Lounges (LiveKit SFU + Opus)
-*No complex phone ringing, incoming call popups, or accept/decline flows. Users simply join and leave persistent voice channels freely, exactly like Discord.*
+### B. Discord-Style Voice Channels & Audio Hardware Settings (LiveKit SFU + Opus)
 
-1. **1-Tap Voice Channel Drop-in**:
-   - Click any voice channel (e.g. `🔊 #general-lounge`, `🔊 #builders`, `🔊 #chill`) to immediately connect to the audio room.
-   - Channel participant list shows who is currently inside with **Bright Green (`#30d158`) active speaking rings**.
-2. **Seamless Auto-Reconnection & Fast ICE Restart**:
-   - If the user's Wi-Fi drops, switches to cellular, or encounters network jitter, the WebRTC engine initiates an **instant ICE Restart within <500ms** without dropping the audio session.
-   - Connection State Indicator: Live ping meter in milliseconds (`🟢 18ms`, `🟡 110ms`, `🔴 Reconnecting...`).
-   - Silent JWT Token Refresh: Background token rotation so multi-hour voice sessions never disconnect.
-3. **Persistent Floating Voice Dock (Global)**:
-   - When connected, a solid matte dock floats at the bottom of the screen across all routes:
-     `🟢 In Voice: #general (18ms ping) · 🎙️ Mute (M) · 🎧 Deafen (D) · 🔴 Disconnect (Esc)`
-   - Browse the feed, write posts, or chat in DMs while talking in real-time with zero audio interruption.
-4. **Voice Activity Detection (VAD) & Active Speaker Detection**:
-   - **Bright Green Glowing Rings (`#30d158`)**: Avatars pulse with a high-visibility Apple Green glow when actively speaking.
-   - **Push-to-Talk (PTT)**: Optional configurable hotkey (e.g. hold `Space` or `Caps Lock` to speak).
-5. **Per-User Volume Sliders & Noise Suppression**:
-   - Right-click / hover any participant in a voice channel to adjust their individual volume from **0% to 200%**.
-   - **Opus Codec @ 48kHz** (32–64 kbps), browser-native acoustic echo cancellation, noise suppression, and auto-gain control.
-   - Discontinuous Transmission (DTX) drops bandwidth to 0 kbps when silent.
-6. **Discord-Style Audio Earcons**:
-   - Subtle tactile chimes when joining a channel, disconnecting, muting, or unmuting.
+#### 1. 1-Tap Voice Channel Drop-in & Lounges
+- Click any voice channel (e.g. `🔊 #general-lounge`, `🔊 #builders`, `🔊 #chill`) to immediately connect to the audio room.
+- Channel participant list shows who is currently inside with **Bright Green (`#30d158`) active speaking rings**.
+- Leave whenever you want with `Esc` or the Disconnect button.
+
+#### 2. Discord-Style Audio Device Configuration (`Settings -> Voice & Audio`)
+- **Input Device Selector (Microphone)**: Real-time dropdown populated via `navigator.mediaDevices.enumerateDevices()` (e.g. `MacBook Pro Microphone`, `AirPods Pro`, `USB Mic - Blue Yeti`).
+- **Output Device Selector (Headphones/Speakers)**: Dropdown with output sink routing via `HTMLMediaElement.setSinkId()` (e.g. `AirPods Pro`, `External Speakers`, `Default System Output`).
+- **"Let's Check Your Mic" Live VU Meter & Audio Test**:
+  - Live animated audio level bar (green gradient) showing current decibel input.
+  - Optional `Mic Test` toggle to loop audio back to your headphones with 0ms latency to test your voice.
+- **Input Sensitivity Gate**:
+  - `Auto-Sensitivity` toggle (dynamic noise threshold).
+  - Manual sensitivity slider (`-100 dB` to `0 dB`) to eliminate mechanical keyboard clicks and fan hum.
+- **Noise Suppression & Echo Cancellation**:
+  - Dedicated hardware DSP switches: `Echo Cancellation`, `Noise Suppression`, `Auto Gain Control`.
+
+#### 3. Persistent Floating Voice Dock (Global)
+- When connected, a solid matte dock floats at the bottom left across all routes:
+  `🟢 In Voice: #general (18ms ping) · 🎙️ Mute (M) · 🎧 Deafen (D) · ⚙️ Audio Settings · 🔴 Disconnect (Esc)`
+- Browse the feed, write posts, or chat in DMs while talking in real-time with zero audio interruption.
+
+#### 4. Seamless Auto-Reconnection & Fast ICE Restart
+- If the user's Wi-Fi drops, switches to cellular, or encounters network jitter, the WebRTC engine initiates an **instant ICE Restart within <500ms** without dropping the audio session.
+- Connection State Indicator: Live ping meter in milliseconds (`🟢 18ms`, `🟡 110ms`, `🔴 Reconnecting...`).
+- Silent JWT Token Refresh: Background token rotation so multi-hour voice sessions never disconnect.
+
+#### 5. Per-User Volume Sliders (0% to 200%)
+- Right-click / hover any participant in a voice channel to adjust their individual volume from **0% to 200%**.
+- Discontinuous Transmission (DTX) drops bandwidth to 0 kbps when silent.
+
+#### 6. Discord-Style Audio Earcons
+- Subtle tactile procedural Web Audio chimes when joining a channel, disconnecting, muting, or unmuting.
 
 ---
 
@@ -462,7 +474,7 @@ sequenceDiagram
     API->>API: Add to voice_channel_participants & mint LiveKit JWT token
     API->>Redis: PUBLISH "voice:channel:{id}" { event: "user_joined", user_id: "..." }
     API-->>User: Return { room_name: "channel-123", token: "jwt_token" }
-    User->>LiveKit: Connect WebRTC stream over UDP (Opus 48kHz)
+    User->>LiveKit: Connect WebRTC stream over UDP (Opus 48kHz with selected mic/output)
     LiveKit<<-->>User: Bi-directional sub-40ms audio with active speaker detection
     Note over User,LiveKit: If network drops, client triggers instant ICE Restart in <500ms
 ```
@@ -485,8 +497,9 @@ sequenceDiagram
    - Discord-fast split-pane DM interface with WhatsApp delivery ticks (`✓`, `✓✓`, blue `✓✓`), typing indicators, and presence.
    - User profile pages with tabbed timelines (`Thoughts`, `Replies`, `Likes`, `Bookmarks`).
    - Quick Command Palette (`Cmd+K`) and keyboard navigation (`j`/`k`, `n`, `c`, `m`, `d`, `Esc`, `/`).
-4. **Implement Discord Voice Channels**:
-   - `VoiceDock.tsx` persistent solid matte dock with live ping, mute, deafen, and disconnect controls.
+4. **Implement Discord Voice Channels & Audio Hardware Settings**:
+   - `VoiceDock.tsx` persistent solid matte dock with live ping, mute, deafen, settings gear, and disconnect controls.
+   - **Audio Device Settings Modal**: Microphone input dropdown, headphone output dropdown, and live VU decibel meter with "Test Mic" loopback.
    - Voice channel list showing active participants and live **Bright Green speaking indicator rings**.
    - Fast auto-reconnect and ICE restart on network jitter / Wi-Fi drops.
    - WebRTC audio hook using `@livekit/components-react` with Opus codec @ 48kHz.
@@ -494,6 +507,7 @@ sequenceDiagram
 5. **End-to-End Verification**:
    - Run `docker compose up --build` and verify all 5 containers pass healthchecks.
    - Test sub-20ms WebSocket message delivery between two separate browser windows.
+   - Test microphone and output device selection with live VU meter.
    - Test joining a voice channel, verify live speaking glowing rings, mute/deafen hotkeys, and persistent audio while browsing the feed.
    - Test network interruption simulation (temporary socket disconnect) and verify automatic reconnection in <500ms.
    - Verify keyboard navigation and responsive design across desktop and mobile viewports.
