@@ -1,6 +1,6 @@
 # ⚡ Project LOOP — Master Design & Architecture Specification
 
-> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice channels & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in a precision minimalist design (solid monochrome palette + vibrant Apple Blue accent). No ringing call popups, no photos, no videos, no algorithmic manipulation, no floaty fluff—just sharp text, sub-20ms chat delivery, and seamless 1-tap Discord voice channels with automatic reconnection.
+> **The Vision**: The definitive **pure-text social platform with Discord-grade real-time voice & chat**, combining the absolute best of **Discord, X (Twitter), WhatsApp, and Telegram** in a precision minimalist design with **Modern Apple Blue (`#007aff`) for primary accents and Bright Apple Green (`#30d158`) for live voice/mic activity**. No photos, no videos, no algorithmic manipulation, no floaty fluff—just sharp text, sub-20ms chat delivery, and crystal-clear <40ms voice channels with automatic reconnection.
 
 ---
 
@@ -10,7 +10,7 @@
 flowchart TD
     subgraph Giants ["The 4 Best-of-Breed Foundations"]
         X["𝕏 / Twitter\n• Chronological Following & Discover feeds\n• 1-Click Reposts & Quote thoughts\n• Threaded replies with connector hairlines\n• Bookmarks, Pin to profile & Edit post window"]
-        Discord["Discord\n• 1-Tap Persistent Voice Channels & Lounges (Sub-40ms LiveKit SFU)\n• Auto-Reconnect with ICE Restart & Connection Quality Meter\n• Voice Activity Detection (VAD) & Active Speaker Glow Rings\n• Sub-20ms WebSocket DMs & Group chats\n• Live presence, custom text statuses & emoji reactions"]
+        Discord["Discord\n• 1-Tap Persistent Voice Channels & Lounges (Sub-40ms LiveKit SFU)\n• Auto-Reconnect with ICE Restart & Connection Quality Meter\n• Voice Activity Detection (VAD) & Active Speaker Bright Green Glow Rings\n• Sub-20ms WebSocket DMs & Group chats\n• Live presence, custom text statuses & emoji reactions"]
         Telegram["Telegram\n• Broadcast Channels / Public Circles\n• Search history inside any DM conversation\n• 'Saved Messages' personal private scratchpad\n• Keyboard-first shortcuts & instant navigation"]
         WhatsApp["WhatsApp\n• Read receipts & delivery ticks (✓, ✓✓, ✓✓ blue)\n• In-reply-to quote preview bubbles in chat\n• DM privacy (Allow all vs. Mutuals only)\n• Pin conversations & mute/archive chats"]
     end
@@ -19,7 +19,7 @@ flowchart TD
         Voice["🎙️ 1-Tap Discord Voice Channels\nDrop in/out freely, LiveKit SFU + Opus 48kHz (Sub-40ms latency, persistent bottom dock)"]
         Speed["⚡ Sub-20ms WebSocket Chat\nInstant optimistic updates for feed, likes, and messages"]
         Palette["⚡ Global Command Palette (Cmd+K)\nJump to any user, chat, bookmark, or action in 1 keystroke"]
-        Design["🎨 Monochrome Precision + Apple Blue (#007aff)\nSolid layered dark surfaces with 1px crisp hairline borders"]
+        Design["🎨 Monochrome Precision + Apple Blue (#007aff) & Bright Green (#30d158)\nSolid layered dark surfaces with 1px crisp hairline borders"]
     end
 
     Giants --> ProductCore
@@ -38,7 +38,7 @@ flowchart TD
    - Hotkey publish: `Cmd + Enter` / `Ctrl + Enter`.
    - Rich text formatting: Bold (`**`), Italic (`*`), Inline Code (`` `code` ``), and Blockquotes (`>`).
 3. **Post Interactions**:
-   - **Like / Heart**: Tactile numeric slide ticker (`tabular-nums`) with Apple Blue glow.
+   - **Like / Heart**: Tactile numeric slide ticker (`tabular-nums`) with vibrant Pink/Red (`#ff375f`) glow.
    - **Repost / Echo**: 1-Tap repost directly to your followers.
    - **Quote Thought**: Repost with your own commentary attached above the original card.
    - **Threaded Nested Replies**: Clean vertical connector hairlines with indented responses.
@@ -54,7 +54,7 @@ flowchart TD
 
 1. **1-Tap Voice Channel Drop-in**:
    - Click any voice channel (e.g. `🔊 #general-lounge`, `🔊 #builders`, `🔊 #chill`) to immediately connect to the audio room.
-   - Channel participant list shows who is currently inside with live speaking indicator rings.
+   - Channel participant list shows who is currently inside with **Bright Green (`#30d158`) active speaking rings**.
 2. **Seamless Auto-Reconnection & Fast ICE Restart**:
    - If the user's Wi-Fi drops, switches to cellular, or encounters network jitter, the WebRTC engine initiates an **instant ICE Restart within <500ms** without dropping the audio session.
    - Connection State Indicator: Live ping meter in milliseconds (`🟢 18ms`, `🟡 110ms`, `🔴 Reconnecting...`).
@@ -63,8 +63,8 @@ flowchart TD
    - When connected, a sleek dock floats at the bottom of the screen across all routes:
      `🟢 In Voice: #general (18ms ping) · 🎙️ Mute (M) · 🎧 Deafen (D) · 🔴 Disconnect (Esc)`
    - Browse the feed, write posts, or chat in DMs while talking in real-time with zero audio interruption.
-4. **Voice Activity Detection (VAD) & Push-to-Talk (PTT)**:
-   - **VAD**: Dynamic noise threshold gate with active speaker detection (Apple Blue glowing rings around avatars).
+4. **Voice Activity Detection (VAD) & Active Speaker Detection**:
+   - **Bright Green Glowing Rings (`#30d158`)**: Avatars pulse with a high-visibility Apple Green glow when actively speaking.
    - **Push-to-Talk (PTT)**: Optional configurable hotkey (e.g. hold `Space` or `Caps Lock` to speak).
 5. **Per-User Volume Sliders & Noise Suppression**:
    - Right-click / hover any participant in a voice channel to adjust their individual volume from **0% to 200%**.
@@ -82,10 +82,10 @@ flowchart TD
 2. **Delivery & Read Receipts (WhatsApp Style)**:
    - `✓` Sent to server.
    - `✓✓` Delivered to recipient's active socket.
-   - `✓✓` (Apple Blue) Read by recipient.
+   - `✓✓` (Modern Apple Blue) Read by recipient.
 3. **Live Typing Indicators & Presence (Discord Style)**:
    - Rhythmic 3-dot breathing animation: *"Sarah is typing..."*.
-   - Live emerald status dot (`online` / `offline`) + custom status snippet (e.g. `💬 "building loop"`, `⚡ "deep work"`).
+   - Live **Bright Green status dot (`#30d158`)** (`online` / `offline`) + custom status snippet (e.g. `💬 "building loop"`, `⚡ "deep work"`).
 4. **In-Chat Quoted Replies**:
    - Click or swipe reply on any message to pin a quote bubble above your input.
 5. **Emoji & Micro-Reactions**:
@@ -104,7 +104,7 @@ flowchart TD
 1. **User Identity (`/@handle`)**:
    - Display name, `@handle`, bio (≤280 chars), custom status, joined date.
    - Stats Bar: `Following`, `Followers`, `Thoughts`.
-   - 1-Tap Solid **Apple Blue `Follow` / `Following` toggle**.
+   - 1-Tap Solid **Modern Apple Blue `Follow` / `Following` toggle**.
 2. **Profile Tabs**:
    - `Thoughts`: Root posts authored by this user (including pinned posts at top).
    - `Replies`: Public thread replies and discussions.
@@ -128,10 +128,10 @@ flowchart TD
 
 ---
 
-## 3. Minimalist Design System: Solid Monochrome + Apple Blue
+## 3. Minimalist Design System: Solid Monochrome + Apple Blue & Bright Green
 
-### 3.1 Palette & Surface Ladder (`globals.css`)
-No blurry glassmorphism. Surfaces are **solid, dark, and layered** with precision 1px borders:
+### 3.1 Palette & Semantic Tokens (`globals.css`)
+No blurry glassmorphism. Surfaces are **solid, dark, and layered** with precision 1px borders and targeted high-visibility accents:
 
 ```css
 :root {
@@ -155,13 +155,21 @@ No blurry glassmorphism. Surfaces are **solid, dark, and layered** with precisio
   --text-subtle: #71717a;           /* Tertiary text: timestamps, handles */
   --text-muted: #474750;            /* Disabled states, subtle placeholders */
 
-  /* Apple System Blue Accent Suite */
+  /* Modern Apple Blue Accent Suite (Primary Actions, CTAs, Badges) */
   --apple-blue: #007aff;            /* Primary action blue */
-  --apple-blue-hover: #0066d6;      /* Hover state for buttons */
+  --apple-blue-hover: #0066d6;      /* Hover state for primary buttons */
   --apple-blue-subtle: rgba(0, 122, 255, 0.12); /* Badge & selection background */
   --apple-blue-glow: 0 0 16px rgba(0, 122, 255, 0.25);
-  --status-online: #10b981;         /* Precision emerald online indicator */
-  --status-voice: #007aff;          /* In-voice indicator */
+
+  /* Modern Bright Green Accent Suite (Live Voice, Active Mic, Online Presence) */
+  --bright-green: #30d158;          /* Apple Bright Green for mic/voice */
+  --bright-green-glow: 0 0 16px rgba(48, 209, 88, 0.35); /* Active speaker avatar ring */
+  --bright-green-subtle: rgba(48, 209, 88, 0.12); /* In-voice status chip */
+
+  /* Auxiliary Semantic Accents */
+  --status-danger: #ff453a;         /* Apple Red for Disconnect & Muted mic */
+  --status-warning: #ff9f0a;        /* Apple Amber for Deafened state */
+  --reaction-heart: #ff375f;        /* Apple Pink for active Like hearts */
 
   /* Typography & Layout Metrics */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -469,8 +477,8 @@ sequenceDiagram
    - REST endpoints for Feed/Posts/Likes/Reposts/Bookmarks/Search.
    - Native WebSocket connection hub with Redis Pub/Sub.
    - Voice channel endpoints (`GET /voice/channels`, `POST /voice/channels/{id}/join`, `POST /voice/channels/{id}/leave`) with LiveKit token minting.
-3. **Build Next.js 15 Monochrome + Apple Blue UI**:
-   - `globals.css` with solid surface ladder, hairline tokens, and Apple Blue accents (`#007aff`).
+3. **Build Next.js 15 Monochrome + Apple Blue & Bright Green UI**:
+   - `globals.css` with solid surface ladder, hairline tokens, Modern Apple Blue (`#007aff`), and Bright Apple Green (`#30d158`).
    - Spatial App Shell: Left floating icon rail, center focus stream, contextual right dock.
    - Micro-Composer with character counter ring and Apple Blue `Post` button (`Cmd+Enter`).
    - Post cards with vertical sliding numeric tickers, threaded replies, and emoji reactions.
@@ -479,7 +487,7 @@ sequenceDiagram
    - Quick Command Palette (`Cmd+K`) and keyboard navigation (`j`/`k`, `n`, `c`, `m`, `d`, `Esc`, `/`).
 4. **Implement Discord Voice Channels**:
    - `VoiceDock.tsx` persistent floating bottom dock with live ping, mute, deafen, and disconnect controls.
-   - Voice channel list showing active participants and live speaking indicator rings.
+   - Voice channel list showing active participants and live **Bright Green speaking indicator rings**.
    - Fast auto-reconnect and ICE restart on network jitter / Wi-Fi drops.
    - WebRTC audio hook using `@livekit/components-react` with Opus codec @ 48kHz.
    - Per-user volume sliders (0–200%) and Push-to-Talk / VAD noise suppression.
