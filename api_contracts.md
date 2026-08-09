@@ -16,8 +16,23 @@ export interface User {
   customStatus: string;
   friendsCount: number;
   thoughtsCount: number;
+  invitesRemaining: number;
+  isSuperuser?: boolean;
   friendshipStatus: 'none' | 'pending_sent' | 'pending_received' | 'friends';
   isOnline?: boolean;
+  createdAt: string;
+}
+
+export interface Invite {
+  id: string;
+  code: string;
+  inviterId: string;
+  inviterHandle: string;
+  inviterDisplayName: string;
+  customMessage?: string | null;
+  isClaimed: boolean;
+  claimedByHandle?: string | null;
+  expiresAt: string;
   createdAt: string;
 }
 
@@ -29,6 +44,39 @@ export interface FriendRequest {
   createdAt: string;
 }
 
+export interface Poll {
+  id: string;
+  question: string;
+  options: { id: string; text: string; votesCount: number }[];
+  totalVotes: number;
+  userVotedOptionId?: string | null;
+  expiresAt: string;
+}
+
+export interface OfflineOutboxItem {
+  tempId: string;
+  action: 'post:create' | 'post:like' | 'chat:send';
+  payload: Record<string, any>;
+  createdAt: string;
+  status: 'queued' | 'syncing' | 'synced' | 'failed';
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  actorId: string;
+  actor: {
+    id: string;
+    handle: string;
+    displayName: string;
+  };
+  type: 'like' | 'reply' | 'quote' | 'repost' | 'friend_request' | 'friend_accept';
+  postId?: string | null;
+  postSnippet?: string | null;
+  isRead: boolean;
+  createdAt: string;
+}
+
 export interface Post {
   id: string;
   authorId: string;
@@ -37,20 +85,29 @@ export interface Post {
     handle: string;
     displayName: string;
     customStatus?: string;
+    trustScore?: number;
   };
   content: string;
   parentId?: string | null;
+  threadRootId?: string | null;
   repostOfId?: string | null;
   repostOf?: Post | null;
+  quoteOfId?: string | null;
+  quoteOf?: Post | null;
+  poll?: Poll | null;
+  rankScore?: number;
   isPinned: boolean;
   likesCount: number;
   repostsCount: number;
   repliesCount: number;
+  quotesCount: number;
+  bookmarksCount: number;
   hasLiked: boolean;
   hasReposted: boolean;
   hasBookmarked: boolean;
   reactions: Record<string, number>;
   userReaction?: string | null;
+  isOfflineQueued?: boolean;
   editedAt?: string | null;
   createdAt: string;
 }
